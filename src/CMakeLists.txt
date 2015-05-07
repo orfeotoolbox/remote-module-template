@@ -1,12 +1,15 @@
 
 
-#${itk-module} will be the name of this module and will not need to be
+#${otb-module} will be the name of this module and will not need to be
 #changed when this module is renamed.
 
-set(${itk-module}_SRC
-itkSomeFile.cxx
+set(${otb-module}_SRC
+otbSomeFile.cxx
 )
 
-add_library(${itk-module} ${${itk-module}_SRC})
-target_link_libraries(${itk-module}  ${${itk-module}_LIBRARIES})
-itk_module_target(${itk-module})
+message (status "${otb-module} " ${otb-module})
+message (status "${otb-module}_SRC " ${${otb-module}_SRC})
+
+add_library(${otb-module} ${${otb-module}_SRC})
+target_link_libraries(${otb-module}  ${${otb-module}_LIBRARIES})
+otb_module_target(${otb-module})

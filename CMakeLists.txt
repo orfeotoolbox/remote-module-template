@@ -1,3 +1,3 @@
 project(ExternalTemplate)
 set(ExternalTemplate_LIBRARIES ExternalTemplate)
-itk_module_impl()
+otb_module_impl()

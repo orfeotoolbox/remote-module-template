@@ -1,13 +1,16 @@
-itk_module_test()
+otb_module_test()
 
-#${itk-module} will be the name of this module and will not need to be
+#${otb-module} will be the name of this module and will not need to be
 #changed when this module is renamed.
 
-set(${itk-module}Tests
-  itkEmptyTest.cxx
+set(${otb-module}Tests
+  otbEmptyTestDriver.cxx
+  otbEmptyTest.cxx
 )
 
-CreateTestDriver(${itk-module}  "${${itk-module}-Test_LIBRARIES}" "${${itk-module}Tests}")
+add_executable(otbEmptyTestDriver ${${otb-module}Tests})
+target_link_libraries(otbEmptyTestDriver ${${otb-module}-Test_LIBRARIES})
+otb_module_target_label(otbEmptyTestDriver)
 
-itk_add_test(NAME itkDeleteMeEmptyTest
-  COMMAND ${itk-module}TestDriver itkEmptyTest "argument1" "..." )
+otb_add_test(NAME otbDeleteMeEmptyTest
+  COMMAND ${otb-module}TestDriver itkEmptyTest "argument1" "..." )
