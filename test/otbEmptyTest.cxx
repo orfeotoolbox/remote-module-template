@@ -1,6 +1,6 @@
 #include <cstdlib>
 
-int itkEmptyTest( int , char ** )
+int otbEmptyTest( int , char ** )
 {
   return EXIT_SUCCESS;
 }

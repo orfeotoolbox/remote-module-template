@@ -2,5 +2,4 @@
 void RegisterTests()
 {
   REGISTER_TEST(otbEmptyTest);
-
 }

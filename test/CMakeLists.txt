@@ -13,4 +13,4 @@ target_link_libraries(otbEmptyTestDriver ${${otb-module}-Test_LIBRARIES})
 otb_module_target_label(otbEmptyTestDriver)
 
 otb_add_test(NAME otbDeleteMeEmptyTest
-  COMMAND ${otb-module}TestDriver itkEmptyTest "argument1" "..." )
+  COMMAND otbEmptyTestDriver otbEmptyTest "argument1" "..." )

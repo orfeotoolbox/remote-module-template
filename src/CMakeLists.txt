@@ -1,14 +1,9 @@
-
-
 #${otb-module} will be the name of this module and will not need to be
 #changed when this module is renamed.
 
 set(${otb-module}_SRC
 otbSomeFile.cxx
 )
-
-message (status "${otb-module} " ${otb-module})
-message (status "${otb-module}_SRC " ${${otb-module}_SRC})
 
 add_library(${otb-module} ${${otb-module}_SRC})
 target_link_libraries(${otb-module}  ${${otb-module}_LIBRARIES})
