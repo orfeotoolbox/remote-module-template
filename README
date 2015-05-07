@@ -1,70 +1,47 @@
-General
+General 
 =======
 
-This is a module for [ITK](http://itk.org): The Insight Toolkit for Segmentation and
-Registration. It is designed to work with the ITKv4
-modular system and  to be places it ITK/Modules/External or uses as a
-Remote module.
+This is a template module for the ORFEO
+Toolbox(https://www.orfeo-toolbox.org/). It is designed to work with OTBv5
+modular system and to be places in OTB/Module/Remote.
 
-This modular is empty it is just a template to be used as a starting
-point for a module with acutal content.
+This module is empty it is just a template to be used as a starting point for a
+module with acutal content. It contains the template for sources (src folder),
+test (test folder) and application (app folder)
 
-Getting Started
+Getting Started 
 ===============
 
-The official ITKv4 Wiki documentation on adding an external module is here:
-http://www.itk.org/Wiki/ITK_Release_4/Modularization/Add_an_external_module_(external_module)
-http://www.itk.org/Wiki/ITK/Policy_and_Procedures_for_Adding_Remote_Modules
-
-
-External Module
----------------
-
-The following is a breif list of instructions to get a external module
-started in a repository:
-
-mkdir ITK/Modules/External/itkMyModule
-cd ITK/Modules/External/itkMyModule
-git init
-git fetch git@github.com:blowekamp/itkExternalTemplate.git
-git merge FETCH_HEAD
-
-Remote Module
--------------
-
-After a module has been created as a git repository it can be included
-as a remote module, which enables automatic fetching. Add a file in
-"ITK/Modules/Remote" called "YourModule.remote.cmake", for this module
-it would be "ExternalExample.remote.cmake" with the followlowing contents:
-
-itk_fetch_module(ExternalTemplate
-  "A template for a module."
-  GIT_REPOSITORY http://github.com/blowekamp/itkExternalTemplate.git
-  GIT_TAG master
-  )
+The official OTB Wiki documentation on adding an external module is here:
+http://wiki.orfeo-toolbox.org/index.php/How_to_write_a_remote_module
 
 Editing
--------
+======= 
 
-The CMakeLists.txt and itk-modules need to be modified with the name
-of the module, something along the following:
+The CMakeLists.txt and otb-modules need to be modified with the name of the
+module, something along the following:
 
-sed 's/ExternalTemplate/MyModule/g' CMakeLists.txt itk-module.cmake
+sed 's/ExternalTemplate/MyModule/g' CMakeLists.txt otb-module.cmake
 
-There is the inplace option to sed, but it's not portable, so do this
-change by hand or look up the option in sed.
+There is the inplace option to sed, but it's not portable, so do this change by
+hand or look up the option in sed.
 
-Then hack away at you code in include, src, and tests.
+Then hack away at you code in include, src, test and app folders.
 
-License
+License 
 =======
 
-This software is distributed under the Apache License. Please see
-LICENSE for details.
+This software is distributed under the Apache License. Please see LICENSE for
+details.
 
-
-Author
+Author 
 ======
 
+Manuel Grizonnet
 
-Bradley Lowekamp
+Thanks 
+======
+
+It is a fork of the ITK template module provided by Bradley Lowekamp
+(https://github.com/blowekamp/itkExternalTemplate.git) which was adapted for the
+ORFEO ToolBox.

@@ -11,6 +11,7 @@ set(DOCUMENTATION "OTB module template.")
 otb_module(ExternalTemplate
   DEPENDS
     OTBCommon
+    OTBApplicationEngine
   TEST_DEPENDS
     OTBTestKernel
     OTBImageIO
