@@ -6,5 +6,5 @@ otbSomeFile.cxx
 )
 
 add_library(${otb-module} ${${otb-module}_SRC})
-target_link_libraries(${otb-module}  ${${otb-module}_LIBRARIES})
+target_link_libraries(${otb-module}  ${OTBCommon_LIBRARIES})
 otb_module_target(${otb-module})

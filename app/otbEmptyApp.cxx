@@ -1,10 +1,10 @@
 #include "otbWrapperApplication.h"
 #include "otbWrapperApplicationFactory.h"
 
-class otbEmptyApp : public otb::Wrapper::Application
+class EmptyApp : public otb::Wrapper::Application
 {
 public:
-  typedef otbEmptyApp Self;
+  typedef EmptyApp Self;
   typedef itk::SmartPointer<Self> Pointer; 
 
   itkNewMacro(Self);
@@ -12,7 +12,7 @@ public:
 private:
   void DoInit()
   {
-    SetName("otbEmptyApp");
+    SetName("EmptyApp");
     SetDescription("Empty application.");
   }
 
@@ -26,4 +26,4 @@ private:
   }
 };
 
-OTB_APPLICATION_EXPORT(otbEmptyApp)
+OTB_APPLICATION_EXPORT(EmptyApp)
