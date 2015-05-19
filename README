@@ -6,7 +6,7 @@ Toolbox(https://www.orfeo-toolbox.org/). It is designed to work with OTBv5
 modular system and to be places in OTB/Module/Remote.
 
 This module is empty it is just a template to be used as a starting point for a
-module with acutal content. It contains the template for sources (src folder),
+module with actual content. It contains the template for sources (src folder),
 test (test folder) and application (app folder).
 
 Getting Started 

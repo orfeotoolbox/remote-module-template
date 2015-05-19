@@ -8,7 +8,7 @@ public:
   typedef itk::SmartPointer<Self> Pointer; 
 
   itkNewMacro(Self);
-  itkTypeMacro(otbEmptyApp, otb::Application);
+  itkTypeMacro(EmptyApp, otb::Wrapper::Application);
 private:
   void DoInit()
   {
