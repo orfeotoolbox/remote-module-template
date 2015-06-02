@@ -1,11 +1,9 @@
 set(DOCUMENTATION "OTB module template.")
 
-# itk_module() defines the module dependencies in ExternalTemplate
-# ExternalTemplate depends on ITKCommon
-# The testing module in ExternalTemplate depends on ITKTestKernel
-# and ITKMetaIO(besides ExternalTemplate and ITKCore)
-# By convention those modules outside of ITK are not prefixed with
-# ITK.
+# OTB_module() defines the module dependencies in ExternalTemplate
+# ExternalTemplate depends on OTBCommon and OTBApplicationEngine
+# The testing module in ExternalTemplate depends on OTBTestKernel
+# and OTBCommandLine
 
 # define the dependencies of the include module and the tests
 otb_module(ExternalTemplate
@@ -14,7 +12,7 @@ otb_module(ExternalTemplate
     OTBApplicationEngine
   TEST_DEPENDS
     OTBTestKernel
-    OTBImageIO
+    OTBCommandLine
   DESCRIPTION
     "${DOCUMENTATION}"
 )
