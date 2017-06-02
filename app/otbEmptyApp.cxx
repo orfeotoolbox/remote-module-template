@@ -22,7 +22,10 @@ private:
 
   void DoExecute()
   {  
-    int ThisDoesNothing = 0;   
+    int ThisDoesNothing = 0;
+
+    //Silent ununed variable warning
+    (void) ThisDoesNothing;
   }
 };
 
