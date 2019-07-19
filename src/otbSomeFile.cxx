@@ -1,3 +1,10 @@
+#include "otbLogger.h"
+
 namespace otb {
-int ThisDoesNothing = 0;
+
+void ThisFunctionDoesNothing()
+{
+  Logger::Instance()->Info("This function does nothing\n");
+}
+
 }

@@ -1,6 +1,8 @@
 #include "otbWrapperApplication.h"
 #include "otbWrapperApplicationFactory.h"
 
+#include "otbSomeHeader.h"
+
 class EmptyApp : public otb::Wrapper::Application
 {
 public:
@@ -23,6 +25,12 @@ private:
   void DoExecute()
   {  
     int ThisDoesNothing = 0;
+    
+    otb::SomeTemplatedClass<double> a;
+    a.SetValue(2.0);
+    double v = a.GetValue();
+
+    otbAppLogINFO("This application does nothing : "<< v);
 
     //Silent ununed variable warning
     (void) ThisDoesNothing;
