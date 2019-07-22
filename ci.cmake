@@ -106,7 +106,6 @@ ctest_build(BUILD "${CTEST_BINARY_DIRECTORY}"
             RETURN_VALUE _build_rv
             CAPTURE_CMAKE_ERROR _build_error
             )
-
 # Build log
 file ( WRITE 
   "${REMOTE_MODULE_SOURCE_DIR}/log/build_return_value_log.txt" "${_build_rv}")
