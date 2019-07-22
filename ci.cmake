@@ -3,6 +3,10 @@
 set(REMOTE_MODULE_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR})
 set (ENV{LANG} "C") # Only ascii output
 
+# Get module name
+file(STRINGS "${CMAKE_CURRENT_LIST_DIR}/otb-module.cmake" _module_match REGEX "otb_module *\\(")
+string(REGEX REPLACE "otb_module *\\( *([a-zA-Z0-9]+)" "\\1" otb-module ${_module_match})
+
 # Build Configuration : Release, Debug..
 if(ci_build_type)
   set (CTEST_BUILD_CONFIGURATION ${ci_build_type})
@@ -24,6 +28,11 @@ endif()
 set(CTEST_BUILD_NAME "$ENV{TRAVIS_BRANCH}")
 set(CTEST_SITE "ubuntu-$ENV{TRAVIS_DIST}-$ENV{TRAVIS_COMPILER}")
 
+set(CTEST_PROJECT_NAME "${otb-module}")
+set(CTEST_DROP_METHOD "https")
+set(CTEST_DROP_SITE "cdash.orfeo-toolbox.org")
+set(CTEST_DROP_LOCATION "/submit.php?project=OTB")
+set(CTEST_DROP_SITE_CDASH TRUE)
 
 # Detect "skip testing"
 if(DEFINED ENV{CI_SKIP_TESTING})
@@ -55,6 +64,7 @@ OTB_BUILD_MODULE_AS_STANDALONE:BOOL=ON
 CMAKE_PREFIX_PATH:PATH=${REMOTE_MODULE_SOURCE_DIR}/xdk
 CMAKE_INSTALL_PREFIX:PATH=${CTEST_INSTALL_DIRECTORY}
 CMAKE_BUILD_TYPE=${CTEST_BUILD_CONFIGURATION}
+OpenGL_GL_PREFERENCE=GLVND
 ")
 string (REPLACE "\n" ";" rm_options ${all_options})
 foreach(item ${rm_options})
