@@ -5,7 +5,9 @@ git:
 
 env:
   global:
-    - OTB_VER=6.6.1
+#    - OTB_URL=https://www.orfeo-toolbox.org/packages/archives/OTB
+    - OTB_URL=https://www.orfeo-toolbox.org/packages/ci/latest
+    - OTB_VER=6.7.0
 
 matrix:
   include:
@@ -15,7 +17,7 @@ matrix:
     sudo: required
     before_install:
       - sudo apt-get install -y ninja-build libglvnd-dev libglu1-mesa-dev
-      - sudo pip install numpy
+      - sudo pip3 install numpy
     env:
       - OTB_OS=Linux64
   - os: osx
@@ -26,7 +28,7 @@ matrix:
       - OTB_OS=Darwin64
 
 install:
-  - wget https://www.orfeo-toolbox.org/packages/archives/OTB/OTB-${OTB_VER}-${OTB_OS}.run
+  - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.run
   - chmod +x OTB-${OTB_VER}-${OTB_OS}.run
   - ./OTB-${OTB_VER}-${OTB_OS}.run --target xdk
 
