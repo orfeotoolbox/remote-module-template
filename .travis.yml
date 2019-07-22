@@ -1,17 +1,35 @@
-os: linux
 language: cpp
-compiler: gcc
-sudo: required
-dist: bionic
 
-before_install:
-  - sudo apt-get install -y ninja-build libglvnd-dev libglu1-mesa-dev
-  - sudo pip install numpy
+git:
+  depth: 3
+
+env:
+  global:
+    - OTB_VER=6.6.1
+
+matrix:
+  include:
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    sudo: required
+    before_install:
+      - sudo apt-get install -y ninja-build libglvnd-dev libglu1-mesa-dev
+      - pip install numpy
+    env:
+      - OTB_OS=Linux64
+  - os: osx
+    compiler: clang
+    before_install:
+      - brew install ninja
+      - pip install numpy
+    env:
+      - OTB_OS=Darwin64
 
 install:
-  - wget https://www.orfeo-toolbox.org/packages/OTB-6.6.1-Linux64.run
-  - chmod +x OTB-6.6.1-Linux64.run
-  - ./OTB-6.6.1-Linux64.run --target xdk
+  - wget https://www.orfeo-toolbox.org/packages/archives/OTB/OTB-${OTB_VER}-${OTB_OS}.run
+  - chmod +x OTB-${OTB_VER}-${OTB_OS}.run
+  - ./OTB-${OTB_VER}-${OTB_OS}.run --target xdk
 
 script:
   - ctest -VV -S ./ci.cmake
