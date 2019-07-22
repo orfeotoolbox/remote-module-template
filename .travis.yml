@@ -5,7 +5,7 @@ sudo: required
 dist: bionic
 
 before_install:
-  - sudo apt-get install -y wget file ninja
+  - sudo apt-get install -y wget file ninja-build
 
 install:
   - wget https://www.orfeo-toolbox.org/packages/OTB-6.6.1-Linux64.run
