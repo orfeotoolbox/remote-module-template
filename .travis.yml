@@ -4,10 +4,8 @@ compiler: gcc
 sudo: required
 dist: bionic
 
-python: "3.6"
-
 before_install:
-  - sudo apt-get install -y wget file ninja-build
+  - sudo apt-get install -y file ninja-build libglvnd-dev libglu1-mesa-dev python3 python3-numpy
 
 install:
   - wget https://www.orfeo-toolbox.org/packages/OTB-6.6.1-Linux64.run
