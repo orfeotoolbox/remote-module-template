@@ -5,12 +5,12 @@ sudo: required
 dist: bionic
 
 before_install:
-  - sudo apt-get install -y ninja-build libglvnd-dev libglu1-mesa-dev python3-numpy
+  - sudo apt-get install -y ninja-build libglvnd-dev libglu1-mesa-dev
+  - sudo pip install numpy
 
 install:
   - wget https://www.orfeo-toolbox.org/packages/OTB-6.6.1-Linux64.run
   - chmod +x OTB-6.6.1-Linux64.run
-  - export OTB_PYTHON_EXE=/usr/bin/python3.6
   - ./OTB-6.6.1-Linux64.run --target xdk
 
 script:
