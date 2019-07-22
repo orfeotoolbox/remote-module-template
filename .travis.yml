@@ -15,14 +15,13 @@ matrix:
     sudo: required
     before_install:
       - sudo apt-get install -y ninja-build libglvnd-dev libglu1-mesa-dev
-      - pip install numpy
+      - sudo pip install numpy
     env:
       - OTB_OS=Linux64
   - os: osx
     compiler: clang
     before_install:
-      - brew install ninja
-      - pip install numpy
+      - brew install ninja libomp
     env:
       - OTB_OS=Darwin64
 
