@@ -5,7 +5,7 @@ set (ENV{LANG} "C") # Only ascii output
 
 # Get project name
 file(STRINGS "${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt" _project_match REGEX "^project *\\(")
-string(REGEX REPLACE "^project *\\( *([a-zA-Z0-9]+)" "\\1" otb-module ${_project_match})
+string(REGEX REPLACE "^project *\\( *([a-zA-Z0-9]+) *\\)" "\\1" otb-module ${_project_match})
 
 # Build Configuration : Release, Debug..
 if(ci_build_type)
