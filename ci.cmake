@@ -31,7 +31,7 @@ set(CTEST_SITE "ubuntu-$ENV{TRAVIS_DIST}-$ENV{TRAVIS_COMPILER}")
 set(CTEST_PROJECT_NAME "${otb-module}")
 set(CTEST_DROP_METHOD "https")
 set(CTEST_DROP_SITE "cdash.orfeo-toolbox.org")
-set(CTEST_DROP_LOCATION "/submit.php?project=OTB")
+set(CTEST_DROP_LOCATION "/submit.php?project=${otb-module}")
 set(CTEST_DROP_SITE_CDASH TRUE)
 
 # Detect "skip testing"
@@ -79,7 +79,7 @@ find_program(CTEST_GIT_COMMAND NAMES git git.cmd)
 
 # End of configuration
 
-ctest_start (Experimental TRACK RemoteModules)
+ctest_start (Experimental)
 
 ctest_update()
 
