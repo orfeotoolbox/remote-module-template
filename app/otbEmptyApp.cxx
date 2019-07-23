@@ -12,17 +12,17 @@ public:
   itkNewMacro(Self);
   itkTypeMacro(EmptyApp, otb::Wrapper::Application);
 private:
-  void DoInit()
+  void DoInit() override
   {
     SetName("EmptyApp");
     SetDescription("Empty application.");
   }
 
-  void DoUpdateParameters()
+  void DoUpdateParameters() override
   {
   }
 
-  void DoExecute()
+  void DoExecute() override
   {  
     int ThisDoesNothing = 0;
     
