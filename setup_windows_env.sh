@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH='/c/Python37:/c/ProgramData/chocolatey/lib/ninja/tools:${PATH}'
+export PATH="/c/Python37:/c/ProgramData/chocolatey/lib/ninja/tools:$PATH"
 
 which python
 
