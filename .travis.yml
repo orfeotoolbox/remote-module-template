@@ -49,9 +49,4 @@ install:
 script:
   - source setup_windows_env.sh
   - echo $PATH
-  - echo $path
-  - export CC=cl.exe
-  - export CXX=cl.exe
-  - export CC_FOR_BUILD=cl.exe
-  - export CXX_FOR_BUILD=cl.exe
   - ctest -VV -S ./ci.cmake
