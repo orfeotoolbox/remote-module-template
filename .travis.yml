@@ -49,4 +49,10 @@ install:
   - ./OTB-${OTB_VER}-${OTB_OS}.run --target xdk
 
 script:
+  - echo $PATH
+  - echo $path
+  - export CC=cl.exe
+  - export CXX=cl.exe
+  - export CC_FOR_BUILD=cl.exe
+  - export CXX_FOR_BUILD=cl.exe
   - ctest -VV -S ./ci.cmake
