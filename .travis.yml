@@ -48,5 +48,9 @@ install:
 
 script:
   - source setup_windows_env.sh
+  - find '/c/Program Files (x86)/Microsoft Visual Studio/2017' -name "vcvarsall.bat"
+  - echo inside BuildTools/Common7/Tools
+  - ls '/c/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/Common7/Tools'
+  - cmd.exe /s /c "call C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\Common7\\Tools\\VsDevCmd.bat /help"
   - echo $PATH
   - ctest -VV -S ./ci.cmake
