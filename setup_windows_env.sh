@@ -8,7 +8,7 @@ eval "$(python -c '
 import sys, os, subprocess
 import distutils.msvc9compiler as msvc
 msvc.find_vcvarsall=lambda _: sys.argv[1]
-envs=msvc.query_vcvarsall(arch='amd64')
+envs=msvc.query_vcvarsall(arch="amd64")
 for k,v in envs.items():
     k = k.upper()
     v = ":".join(subprocess.check_output(["cygpath","-u",p]).decode("utf-8").rstrip(" \n") for p in v.split(";"))
