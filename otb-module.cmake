@@ -7,6 +7,7 @@ set(DOCUMENTATION "OTB module template.")
 
 # define the dependencies of the include module and the tests
 otb_module(ExternalTemplate
+  ENABLE_SHARED
   DEPENDS
     OTBCommon
     OTBApplicationEngine
