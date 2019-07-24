@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export PATH='/c/Python37:/c/ProgramData/chocolatey/lib/ninja/tools:${PATH}'
+
+which python
+
 eval "$(python -c '
 import sys, os, subprocess
 import distutils.msvc9compiler as msvc
