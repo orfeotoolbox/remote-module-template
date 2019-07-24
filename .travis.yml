@@ -11,25 +11,37 @@ env:
 
 matrix:
   include:
-  - os: linux
-    dist: bionic
-    compiler: gcc
-    sudo: required
+  #~ - os: linux
+    #~ dist: bionic
+    #~ compiler: gcc
+    #~ sudo: required
+    #~ before_install:
+      #~ - sudo apt-get install -y
+          #~ ninja-build
+          #~ libglvnd-dev
+          #~ libglu1-mesa-dev
+          #~ python3-numpy
+    #~ env:
+      #~ - OTB_OS=Linux64
+  #~ - os: osx
+    #~ osx_image: xcode10.2
+    #~ compiler: clang
+    #~ before_install:
+      #~ - brew install ninja libomp
+    #~ env:
+      #~ - OTB_OS=Darwin64
+  - os: windows
     before_install:
-      - sudo apt-get install -y
-          ninja-build
-          libglvnd-dev
-          libglu1-mesa-dev
-          python3-numpy
+      - choco install python
+      - choco install ninja
     env:
-      - OTB_OS=Linux64
-  - os: osx
-    osx_image: xcode10.2
-    compiler: clang
-    before_install:
-      - brew install ninja libomp
-    env:
-      - OTB_OS=Darwin64
+      - OTB_OS=Win64
+    install:
+      - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.zip
+      - 7z x -y OTB-${OTB_VER}-${OTB_OS}.zip
+      - mv OTB-${OTB_VER}-${OTB_OS} xdk
+    before_script:
+      - source setup_windows_env.sh
 
 install:
   - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.run
