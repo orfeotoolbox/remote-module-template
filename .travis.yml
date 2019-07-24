@@ -40,8 +40,6 @@ matrix:
       - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.zip
       - 7z x -y OTB-${OTB_VER}-${OTB_OS}.zip
       - mv OTB-${OTB_VER}-${OTB_OS} xdk
-    before_script:
-      - source setup_windows_env.sh
 
 install:
   - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.run
@@ -49,6 +47,7 @@ install:
   - ./OTB-${OTB_VER}-${OTB_OS}.run --target xdk
 
 script:
+  - source setup_windows_env.sh
   - echo $PATH
   - echo $path
   - export CC=cl.exe
