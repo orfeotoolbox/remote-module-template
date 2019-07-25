@@ -11,46 +11,45 @@ env:
 
 matrix:
   include:
-  #~ - os: linux
-    #~ dist: bionic
-    #~ compiler: gcc
-    #~ sudo: required
-    #~ before_install:
-      #~ - sudo apt-get install -y
-          #~ ninja-build
-          #~ libglvnd-dev
-          #~ libglu1-mesa-dev
-          #~ python3-numpy
-    #~ env:
-      #~ - OTB_OS=Linux64
-  #~ - os: osx
-    #~ osx_image: xcode10.2
-    #~ compiler: clang
-    #~ before_install:
-      #~ - brew install ninja libomp
-    #~ env:
-      #~ - OTB_OS=Darwin64
+  - os: linux
+    dist: bionic
+    compiler: gcc
+    sudo: required
+    before_install:
+      - sudo apt-get install -y
+          ninja-build
+          libglvnd-dev
+          libglu1-mesa-dev
+          python3-numpy
+    env:
+      - OTB_OS=Linux64
+      - OTB_PKG_EXT=run
+  - os: osx
+    osx_image: xcode10.2
+    compiler: clang
+    before_install:
+      - brew install ninja libomp
+    env:
+      - OTB_OS=Darwin64
+      - OTB_PKG_EXT=run
   - os: windows
     before_install:
       - choco install python
       - choco install ninja
       - export PATH="/c/Python37:/c/ProgramData/chocolatey/lib/ninja/tools:$PATH"
+      - source setup_windows_env.sh
     env:
       - OTB_OS=Win64
-    install:
-      - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.zip
-      - 7z x -y OTB-${OTB_VER}-${OTB_OS}.zip
-      - mv OTB-${OTB_VER}-${OTB_OS} xdk
-      - source xdk/otbenv.bash
-      - cp GenerateExportHeaderCustom.cmake xdk/lib/cmake/OTB-6.7
-      - cp exportheader.cmake.in xdk/lib/cmake/OTB-6.7
-    before_script:
-      - source setup_windows_env.sh
+      - OTB_PKG_EXT=zip
 
 install:
-  - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.run
-  - chmod +x OTB-${OTB_VER}-${OTB_OS}.run
-  - ./OTB-${OTB_VER}-${OTB_OS}.run --target xdk
+  - export OTB_PKG="OTB-${OTB_VER}-${OTB_OS}.${OTB_PKG_EXT}"
+  - wget ${OTB_URL}/${OTB_PKG}
+  - if [ "$OTB_PKG_EXT" = "run" ]; then chmod +x ${OTB_PKG} ; ./${OTB_PKG} --target xdk ; fi
+  - if [ "$OTB_PKG_EXT" = "zip" ]; then 7z x -y ${OTB_PKG} ; mv OTB-${OTB_VER}-${OTB_OS} xdk ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then source xdk/otbenv.bash ; fi
+  - cp GenerateExportHeaderCustom.cmake xdk/lib/cmake/OTB-6.7
+  - cp exportheader.cmake.in xdk/lib/cmake/OTB-6.7
 
 script:
   - ctest -VV -S ./ci.cmake
