@@ -34,12 +34,15 @@ matrix:
     before_install:
       - choco install python
       - choco install ninja
+      - export PATH="/c/Python37:/c/ProgramData/chocolatey/lib/ninja/tools:$PATH"
     env:
       - OTB_OS=Win64
     install:
       - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.zip
       - 7z x -y OTB-${OTB_VER}-${OTB_OS}.zip
       - mv OTB-${OTB_VER}-${OTB_OS} xdk
+    before_script:
+      - source setup_windows_env.sh
 
 install:
   - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.run
@@ -47,10 +50,4 @@ install:
   - ./OTB-${OTB_VER}-${OTB_OS}.run --target xdk
 
 script:
-  - source setup_windows_env.sh
-  - find '/c/Program Files (x86)/Microsoft Visual Studio/2017' -name "vcvarsall.bat"
-  - echo inside BuildTools/Common7/Tools
-  - ls '/c/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/Common7/Tools'
-  - cmd.exe /c 'call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\Common7\\Tools\\VsDevCmd.bat" /help'
-  - echo $PATH
   - ctest -VV -S ./ci.cmake
