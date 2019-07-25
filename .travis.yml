@@ -41,6 +41,7 @@ matrix:
       - wget ${OTB_URL}/OTB-${OTB_VER}-${OTB_OS}.zip
       - 7z x -y OTB-${OTB_VER}-${OTB_OS}.zip
       - mv OTB-${OTB_VER}-${OTB_OS} xdk
+      - cp GenerateExportHeaderCustom.cmake xdk/lib/cmake/OTB-6.7
     before_script:
       - source setup_windows_env.sh
 
