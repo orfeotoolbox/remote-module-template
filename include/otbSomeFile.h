@@ -5,8 +5,7 @@
 
 namespace otb {
 
-ExternalTemplate_EXPORT
-void ThisFunctionDoesNothing();
+ExternalTemplate_EXPORT void ThisFunctionDoesNothing();
 
 }
 

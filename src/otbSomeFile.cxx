@@ -1,4 +1,5 @@
 #include "otbLogger.h"
+#include "otbSomeFile.h"
 
 namespace otb {
 
