@@ -19,3 +19,6 @@ otb_add_test(NAME otbDeleteMeEmptyTest
 otb_test_application(NAME otbEmptyAppTest
                      APP  EmptyApp
                      )
+
+otb_add_test(NAME otbEmptyScriptTest
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/EmptyScript.py)
