@@ -62,8 +62,6 @@ install:
     else
     source xdk/otbenv.profile;
     fi
-  - cp GenerateExportHeaderCustom.cmake xdk/lib/cmake/OTB-6.7
-  - cp exportheader.cmake.in xdk/lib/cmake/OTB-6.7
   - ctest -S xdk/share/otb/swig/build_wrapping.cmake -VV
 
 script:
