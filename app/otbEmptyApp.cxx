@@ -2,6 +2,7 @@
 #include "otbWrapperApplicationFactory.h"
 
 #include "otbSomeHeader.h"
+#include "otbSomeFile.h"
 
 class EmptyApp : public otb::Wrapper::Application
 {
@@ -31,6 +32,8 @@ private:
     double v = a.GetValue();
 
     otbAppLogINFO("This application does nothing : "<< v);
+
+    otb::ThisFunctionDoesNothing();
 
     //Silent ununed variable warning
     (void) ThisDoesNothing;
