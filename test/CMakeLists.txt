@@ -15,10 +15,18 @@ otb_module_target_label(otbEmptyTestDriver)
 otb_add_test(NAME otbDeleteMeEmptyTest
   COMMAND otbEmptyTestDriver otbEmptyTest "argument1" "..." )
 
-#test application
+# Test an application
 otb_test_application(NAME otbEmptyAppTest
                      APP  EmptyApp
                      )
 
+# Test a Python script using OTB Applications
+set(TEST_DRIVER otbTestDriver
+    --add-before-env OTB_APPLICATION_PATH $<TARGET_FILE_DIR:otbapp_EmptyApp> )
+if(WIN32)
+set(TEST_DRIVER ${TEST_DRIVER}
+    --add-before-env PATH $<TARGET_FILE_DIR:${otb-module}>)
+endif()
+
 otb_add_test(NAME otbEmptyScriptTest
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/EmptyScript.py)
+  COMMAND ${TEST_DRIVER} Execute ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/EmptyScript.py)
