@@ -98,6 +98,12 @@ set(CTEST_GIT_UPDATE_CUSTOM "${CMAKE_COMMAND}" "-E" "echo" "No update")
 # Look for a GIT command-line client.
 find_program(CTEST_GIT_COMMAND NAMES git git.cmd)
 
+# Add bin dir to PATH for testing on Windows
+if(WIN32)
+  file(TO_NATIVE_PATH "${CTEST_BINARY_DIRECTORY}/bin" RM_BUILD_BIN_DIR_NATIVE)
+  set(ENV{PATH} "$ENV{PATH};${RM_BUILD_BIN_DIR_NATIVE}" )
+endif()
+
 # End of configuration
 
 ctest_start (Experimental)
