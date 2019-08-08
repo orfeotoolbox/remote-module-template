@@ -1,12 +1,20 @@
 # General
 
+[![Build Status](https://travis-ci.org/orfeotoolbox/remote-module-template.svg?branch=master)](https://travis-ci.org/orfeotoolbox/remote-module-template)
+
 This is a template module for the ORFEO
 Toolbox(https://www.orfeo-toolbox.org/). It is designed to work with OTBv5
 modular system and to be places in OTB/Module/Remote.
 
 This module is empty it is just a template to be used as a starting point for a
-module with actual content. It contains the template for sources (src folder),
-test (test folder) and application (app folder).
+module with actual content. It contains the template for:
+
+* sources (`src` folder)
+* includes and templated classes (`include` folder)
+* application (`app` folder)
+* tests for C++ sources, applications and python wrappers (`test` folder)
+
+This module also has its own continuous integration scripts (using Travis CI).
 
 # Getting Started
 
