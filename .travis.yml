@@ -29,7 +29,7 @@ matrix:
     osx_image: xcode10.2
     compiler: clang
     before_install:
-      - brew install ninja libomp
+      - brew install ninja libomp git-lfs
     env:
       - OTB_OS=Darwin64
       - OTB_PKG_EXT=run
@@ -62,7 +62,12 @@ install:
     else
     source xdk/otbenv.profile;
     fi
+  # build_wrapping is needed if you use Python wrappers in your module
   - ctest -S xdk/share/otb/swig/build_wrapping.cmake -VV
+  # NamespaceHandler is needed if you have target conflicts between OTB and your module
+  # - ctest -DNAMESPACE:STRING="OTB" -S xdk/lib/cmake/OTB-6.7/NamespaceHandler.cmake
+  # LFS install needed if you use OTB/Data
+  # - git lfs install
 
 script:
   - ctest -VV -S ./ci.cmake

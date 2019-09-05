@@ -25,7 +25,13 @@ else()
   set(ci_short_sha "$ENV{TRAVIS_COMMIT}")
 endif()
 
-set(CTEST_BUILD_NAME "$ENV{TRAVIS_BRANCH}")
+set(CTEST_PROJECT_NAME "${otb-module}")
+set(CTEST_DROP_METHOD "https")
+set(CTEST_DROP_SITE "cdash.orfeo-toolbox.org")
+set(CTEST_DROP_LOCATION "/submit.php?project=OTB")
+set(CTEST_DROP_SITE_CDASH TRUE)
+
+set(CTEST_BUILD_NAME "${CTEST_PROJECT_NAME} ($ENV{TRAVIS_BRANCH})")
 set(CTEST_SITE "$ENV{TRAVIS_OS_NAME}")
 set(compiler_name "$ENV{TRAVIS_COMPILER}")
 if("${CTEST_SITE}" STREQUAL "linux")
@@ -37,12 +43,6 @@ elseif("${CTEST_SITE}" STREQUAL "windows")
   set(compiler_name "vc140")
 endif()
 set(CTEST_SITE "${CTEST_SITE}-${compiler_name}")
-
-set(CTEST_PROJECT_NAME "${otb-module}")
-set(CTEST_DROP_METHOD "https")
-set(CTEST_DROP_SITE "cdash.orfeo-toolbox.org")
-set(CTEST_DROP_LOCATION "/submit.php?project=${otb-module}")
-set(CTEST_DROP_SITE_CDASH TRUE)
 
 # Detect "skip testing"
 if(DEFINED ENV{CI_SKIP_TESTING})
@@ -104,9 +104,38 @@ if(WIN32)
   set(ENV{PATH} "$ENV{PATH};${RM_BUILD_BIN_DIR_NATIVE}" )
 endif()
 
+# Get Data from OTB :
+#   - Use this flag to get the full data
+set(RM_GET_FULL_DATA OFF)
+#   - Or give a list of patterns
+set(RM_DATA_PATTERNS)
+
+set(RM_DATA_REF develop)
+if (RM_GET_FULL_DATA OR RM_DATA_PATTERNS)
+  message(STATUS "Retrieve data files from OTB")
+  execute_process(COMMAND git clone -b ${RM_DATA_REF} --depth 1 -n https://gitlab.orfeo-toolbox.org/orfeotoolbox/otb.git
+                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR})
+  if(RM_GET_FULL_DATA)
+    message(STATUS "  Get full data")
+  else()
+    string(REPLACE ";" "," lfs_includes "${RM_DATA_PATTERNS}")
+    message(STATUS "  Get paths: ${RM_DATA_PATTERNS}")
+    execute_process(COMMAND git config lfs.fetchinclude "${lfs_includes}"
+                    WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
+  endif()
+  execute_process(COMMAND git lfs fetch
+                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
+  execute_process(COMMAND git reset HEAD *
+                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb
+                  OUTPUT_QUIET)
+  execute_process(COMMAND git checkout -- Data/*
+                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
+  set( CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}-DOTB_DATA_ROOT:PATH=${REMOTE_MODULE_SOURCE_DIR}/otb/Data;")
+endif()
+
 # End of configuration
 
-ctest_start (Experimental)
+ctest_start (Experimental TRACK RemoteModules)
 
 ctest_update()
 
