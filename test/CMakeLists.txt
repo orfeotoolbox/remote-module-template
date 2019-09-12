@@ -20,7 +20,7 @@ otb_test_application(NAME otbEmptyAppTest
                      APP  EmptyApp
                      )
 
-# Test a Python script using OTB Applications
+# Test a Python script using OTB Applications bindings.
 set(TEST_DRIVER otbTestDriver
     --add-before-env OTB_APPLICATION_PATH $<TARGET_FILE_DIR:otbapp_EmptyApp> )
 
