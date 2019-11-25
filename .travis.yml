@@ -5,9 +5,9 @@ git:
 
 env:
   global:
-#    - OTB_URL=https://www.orfeo-toolbox.org/packages/archives/OTB
-    - OTB_URL=https://www.orfeo-toolbox.org/packages/ci/latest
-    - OTB_VER=6.7.0
+    - OTB_URL=https://www.orfeo-toolbox.org/packages/archives/OTB
+#    - OTB_URL=https://www.orfeo-toolbox.org/packages/ci/latest
+    - OTB_VER=7.0.0
 
 matrix:
   include:
