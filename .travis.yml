@@ -35,7 +35,7 @@ matrix:
       - OTB_PKG_EXT=run
   - os: windows
     before_install:
-      - choco install python --params "/InstallDir:C:\Python3"
+      - choco install python3 --params "/InstallDir:C:\Python3"
       - choco install ninja
       - export PATH="/c/Python3:/c/ProgramData/chocolatey/lib/ninja/tools:$PATH"
       - /c/Python3/Scripts/pip install numpy
